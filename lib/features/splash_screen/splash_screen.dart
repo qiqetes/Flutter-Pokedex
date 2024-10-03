@@ -26,12 +26,28 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: const BoxDecoration(color: kColBlack),
         child: Center(
-          child: Hero(
-            tag: 'logo',
-            child: Image.asset(
-              // TODO: maybe hero animation
-              'assets/images/pokeball_logo_white.png',
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset('assets/images/pokeball_logo_white.png', width: 80),
+              const SizedBox(height: 20),
+              const Text(
+                'Pokédex',
+                style: TextStyle(
+                  color: kColWhite,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Text(
+                "Got to catch 'em all!",
+                style: TextStyle(
+                  color: kColWhite,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -32,7 +32,7 @@ class App extends ConsumerWidget {
         textTheme: GoogleFonts.dmSansTextTheme().copyWith(
           titleLarge: GoogleFonts.dmSansTextTheme()
               .titleLarge
-              ?.copyWith(fontWeight: FontWeight.normal),
+              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 34),
           bodyMedium: GoogleFonts.dmSansTextTheme()
               .bodyMedium
               ?.copyWith(color: kColBlack),

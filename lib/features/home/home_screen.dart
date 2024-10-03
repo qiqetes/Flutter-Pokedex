@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/features/home/custom_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,13 +7,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Center(child: Text("Home Screen")),
-        ),
-      ),
-    );
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            CustomAppbar(),
+            Expanded(
+              child: Center(
+                child: Text("Home Screen"),
+              ),
+            ),
+          ],
+        ));
   }
 }
