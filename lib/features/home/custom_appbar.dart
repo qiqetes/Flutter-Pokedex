@@ -3,13 +3,35 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/models/poke_type.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
-class CustomAppbar extends ConsumerWidget {
-  const CustomAppbar({super.key});
+class CustomAppBar extends ConsumerStatefulWidget {
+  const CustomAppBar({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final backgroundColor = PokeType.fire.color;
-    final textColor = PokeType.fire.color.isDark ? kColWhite : kColBlack;
+  ConsumerState<ConsumerStatefulWidget> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends ConsumerState<CustomAppBar> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      print(_controller.text);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const pokeType = PokeType.electric;
+    final backgroundColor = pokeType.color;
+    final textColor = pokeType.color.isDark ? kColWhite : kColBlack;
     return Container(
       color: backgroundColor,
       width: double.infinity,
@@ -20,29 +42,57 @@ class CustomAppbar extends ConsumerWidget {
           Positioned(
             top: -30,
             right: -20,
-            child: Opacity(
-              opacity: 0.2,
-              child: Image.asset(
-                'assets/images/pokeball_logo_white.png',
-                width: 190,
-              ),
+            child: Image.asset(
+              'assets/images/pokeball_logo_white.png',
+              color: pokeType.secondaryColor,
+              width: 190,
             ),
           ),
           SafeArea(
             child: Container(
               padding: const EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Pokedex",
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge
                           ?.copyWith(color: textColor)),
+                  const SizedBox(height: 10),
+                  _SearchInputField(textEditingController: _controller),
                 ],
               ),
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _SearchInputField extends StatelessWidget {
+  const _SearchInputField({required this.textEditingController});
+  final TextEditingController textEditingController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: textEditingController,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(
+          Icons.search,
+          size: 25,
+        ),
+        hintText: 'Search your pokemon',
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
     );
   }

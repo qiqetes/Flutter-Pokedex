@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/features/home/home_screen.dart';
+import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
 import 'package:pokedex_flutter/features/splash_screen/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,8 +16,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const SplashScreen(),
       ),
       ShellRoute(
-        // builder: (context, state, child) => NavigationShell(child: child),
-        builder: (context, state, child) => Scaffold(body: child),
+        builder: (context, state, child) => NavigationShell(child: child),
         routes: [
           GoRoute(
             path: '/',
