@@ -1,4 +1,4 @@
-name: flutter_pokedex
+name: pokedex_flutter
 description: "Pokedex app made with Flutter"
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   animations: ^2.0.11
   cached_network_image: ^3.3.1
-  cupertino_icons: ^1.0.8
   dio: ^5.5.0
   flutter_riverpod: ^2.5.1
   freezed_annotation: ^2.4.4
@@ -43,3 +42,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
