@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Capa_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 255.1 255.1"
+   style="enable-background:new 0 0 255.1 255.1;"
+   xml:space="preserve"
+   sodipodi:docname="ground_icon.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs10299" /><sodipodi:namedview
+   id="namedview10297"
+   pagecolor="#ffffff"
+   bordercolor="#999999"
+   borderopacity="1"
+   inkscape:showpageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="4.0258721"
+   inkscape:cx="127.55"
+   inkscape:cy="127.42581"
+   inkscape:window-width="2560"
+   inkscape:window-height="1417"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Capa_1" />
+<style
+   type="text/css"
+   id="style10290">
+	.st0{fill:#E87236;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<path
+   id="circle10292"
+   class="st0"
+   d="M 127.59961 6 A 121.6 121.6 0 0 0 6 127.59961 A 121.6 121.6 0 0 0 127.59961 249.19922 A 121.6 121.6 0 0 0 249.19922 127.59961 A 121.6 121.6 0 0 0 127.59961 6 z M 123.33984 70.896484 L 174.3457 70.896484 C 174.3717 70.896484 174.3953 70.914453 174.4043 70.939453 L 214.09375 173.77344 C 214.10775 173.81344 214.07816 173.85547 214.03516 173.85547 L 83.050781 173.85547 C 83.007781 173.85547 82.978188 173.81444 82.992188 173.77344 L 123.2793 70.9375 C 123.2883 70.9125 123.31284 70.896484 123.33984 70.896484 z M 66.359375 94.085938 L 92.425781 94.085938 C 92.468781 94.085938 92.499375 94.127969 92.484375 94.167969 L 62.474609 174.26172 C 62.465609 174.28572 62.443969 174.30273 62.417969 174.30273 L 35.359375 174.30273 C 35.316375 174.30273 35.285781 174.25975 35.300781 174.21875 L 66.300781 94.125 C 66.309781 94.101 66.333375 94.085937 66.359375 94.085938 z "
+   style="fill:#ffffff;fill-opacity:1" />
+
+</svg>

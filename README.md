@@ -94,3 +94,13 @@ Los tipos de los Pokémon pueden obtenerse de la propia API y sus colores asocia
   usuario (UX) o la interfaz gráfica (UI) son de agradecer.
 - Se valorarán buenas prácticas, clean architecture y el uso de cualquier librería de control
   de calidad del código.
+
+/// query example
+query samplePokeAPIquery {
+pokemon_v2_pokemon(limit: 10) {
+name
+pokemon_v2_pokemonsprites(where: {sprites: {\_has_key: "front_default"}}, limit: 1) {
+sprites(path: "front_default")
+}
+}
+}
