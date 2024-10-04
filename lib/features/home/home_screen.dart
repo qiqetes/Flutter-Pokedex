@@ -34,7 +34,7 @@ class _TypeBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     bool lightText = type.color.isDark;
     return RoundedButton(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
       padding: EdgeInsets.zero,
       onTap: () => print(type.name),
       linearGradientColor2: type.color,
