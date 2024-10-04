@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokedex_flutter/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 
 part 'pokemon.freezed.dart';
 part 'pokemon.g.dart';

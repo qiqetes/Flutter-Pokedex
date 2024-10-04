@@ -1,9 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 
 void main() {
-  group('Pokemon', () {
-    test('fromJson', () {
+  group('Pokemon model tests', () {
+    test('Test fromResource with the expected API result', () {
       final Map<String, dynamic> json = {
         "name": "bulbasaur",
         "id": 1,
@@ -29,7 +30,7 @@ void main() {
       expect(pokemon.name, "bulbasaur");
       expect(pokemon.types.length, 2);
       expect(pokemon.types[0].name, "grass");
-      expect(pokemon.types[1].name, "poison");
+      expect(pokemon.types[1], PokeType.poison);
       expect(pokemon.spriteUrl,
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png");
     });
