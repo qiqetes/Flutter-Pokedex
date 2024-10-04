@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 
 enum PokeType {
   water(color: Color(0xff539ae2), secondaryColor: Color(0xff76baf0)),
@@ -27,4 +28,17 @@ enum PokeType {
     required this.color,
     required this.secondaryColor,
   });
+
+  static PokeType fromJson(String type) {
+    return PokeType.values
+            .firstWhereOrNull((element) => element.toString() == type) ??
+        PokeType.normal;
+  }
+
+  static PokeType fromResource(Map<String, Map<String, String>> json) {
+    final typeStr = json['pokemon_v2_type']?['name'];
+    return PokeType.values
+            .firstWhereOrNull((element) => element.name == typeStr) ??
+        PokeType.normal;
+  }
 }
