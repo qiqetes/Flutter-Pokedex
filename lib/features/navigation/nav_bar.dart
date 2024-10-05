@@ -27,16 +27,14 @@ class NavBar extends StatelessWidget {
             _NavIcon(
               Icon(Icons.search,
                   size: 40,
-                  color: selectedIndex == 0
-                      ? PokeType.electric.color
-                      : Colors.white),
+                  color:
+                      selectedIndex == 0 ? PokeType.water.color : Colors.white),
               onPressed: () => onNavigate(0),
             ),
             _NavIcon(
               Image.asset('assets/images/pokeball_logo_white.png',
-                  color: selectedIndex == 1
-                      ? PokeType.electric.color
-                      : Colors.white),
+                  color:
+                      selectedIndex == 1 ? PokeType.water.color : Colors.white),
               onPressed: () => onNavigate(1),
             ),
           ],

@@ -20,7 +20,7 @@ class BottomGradient extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 kColBlack.withOpacity(0.0),
-                PokeType.electric.color // TODO: change to most used color
+                PokeType.water.secondaryColor // TODO: change to most used color
               ],
             ),
           ),

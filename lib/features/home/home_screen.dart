@@ -21,10 +21,9 @@ class HomeScreen extends StatelessWidget {
           flexibleSpace: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               var top = constraints.biggest.height;
-              bool isShrink =
-                  top <= kToolbarHeight + MediaQuery.of(context).padding.top;
+              bool isShrink = top < 160;
 
-              return const CustomAppBar();
+              return CustomAppBar(isShrink: isShrink);
             },
           ),
         ),

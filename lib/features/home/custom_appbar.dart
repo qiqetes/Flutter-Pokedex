@@ -4,7 +4,8 @@ import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class CustomAppBar extends ConsumerStatefulWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, this.isShrink = false});
+  final bool isShrink;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CustomAppBarState();
@@ -39,7 +40,7 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
         color: backgroundColor,
       ),
       width: double.infinity,
-      height: 167,
+      height: 175,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -54,7 +55,7 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
           ),
           SafeArea(
             child: Container(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -63,8 +64,9 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
                           .textTheme
                           .titleLarge
                           ?.copyWith(color: textColor)),
-                  const SizedBox(height: 10),
-                  _SearchInputField(textEditingController: _controller),
+                  if (!widget.isShrink) const SizedBox(height: 10),
+                  if (!widget.isShrink)
+                    _SearchInputField(textEditingController: _controller),
                 ],
               ),
             ),
