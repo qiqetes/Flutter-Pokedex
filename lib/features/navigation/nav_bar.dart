@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class NavBar extends StatelessWidget {
@@ -14,7 +14,7 @@ class NavBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14),
       child: Container(
         // width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 11),
+        margin: const EdgeInsets.only(bottom: 8),
         height: 64,
         padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
         decoration: BoxDecoration(

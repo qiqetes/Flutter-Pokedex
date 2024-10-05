@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex_flutter/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class CustomAppBar extends ConsumerStatefulWidget {
@@ -29,13 +29,17 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    const pokeType = PokeType.electric;
+    const pokeType = PokeType.water;
     final backgroundColor = pokeType.color;
     final textColor = pokeType.color.isDark ? kColWhite : kColBlack;
-    return Container(
-      color: backgroundColor,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+      ),
       width: double.infinity,
-      height: 200,
+      height: 167,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -50,7 +54,7 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
           ),
           SafeArea(
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,8 +95,7 @@ class _SearchInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
         ),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        contentPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
       ),
     );
   }

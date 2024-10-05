@@ -29,13 +29,14 @@ class App extends ConsumerWidget {
         ),
         scaffoldBackgroundColor: kColWhite,
         primarySwatch: Colors.blue,
-        textTheme: GoogleFonts.dmSansTextTheme().copyWith(
-          titleLarge: GoogleFonts.dmSansTextTheme()
+        textTheme: GoogleFonts.montserratTextTheme().copyWith(
+          titleLarge: GoogleFonts.montserratTextTheme()
               .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 34),
-          titleSmall: GoogleFonts.dmSansTextTheme().titleMedium?.copyWith(
-              fontWeight: FontWeight.bold, fontSize: 24, color: kColBlack),
-          bodyMedium: GoogleFonts.dmSansTextTheme()
+              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 29),
+          titleMedium: GoogleFonts.notoSansTextTheme().titleMedium,
+          titleSmall: GoogleFonts.montserratTextTheme().titleMedium?.copyWith(
+              fontWeight: FontWeight.bold, fontSize: 20, color: kColBlack),
+          bodyMedium: GoogleFonts.notoSansTextTheme()
               .bodyMedium
               ?.copyWith(color: kColBlack),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
+import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class BottomGradient extends StatelessWidget {
   const BottomGradient({super.key});
@@ -18,7 +19,7 @@ class BottomGradient extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                const Color.fromARGB(0, 255, 255, 255),
+                kColBlack.withOpacity(0.0),
                 PokeType.electric.color // TODO: change to most used color
               ],
             ),
