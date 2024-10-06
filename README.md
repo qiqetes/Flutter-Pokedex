@@ -95,12 +95,11 @@ Los tipos de los Pokémon pueden obtenerse de la propia API y sus colores asocia
 - Se valorarán buenas prácticas, clean architecture y el uso de cualquier librería de control
   de calidad del código.
 
-/// query example
-query samplePokeAPIquery {
-pokemon_v2_pokemon(limit: 10) {
-name
-pokemon_v2_pokemonsprites(where: {sprites: {\_has_key: "front_default"}}, limit: 1) {
-sprites(path: "front_default")
-}
-}
-}
+# Showcase:
+![Showcase Phone App](./showcaseImages/showcase_phone_app.gif)
+
+# Problems:
+- The AppBar is too big in Desktop mode
+- ScrollDown to get next page doesn't trigger always (could be done better)
+- HomePage is a mess could be refactored
+

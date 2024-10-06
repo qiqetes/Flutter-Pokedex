@@ -5,13 +5,15 @@ class ResponsiveGrid extends StatelessWidget {
     super.key,
     this.numColumns = 2,
     required this.children,
-    this.spacing = 10,
+    this.spacingHorizontal = 10,
+    this.spacingVertical = 10,
   });
   final int numColumns;
-  final double spacing;
+  final double spacingHorizontal;
+  final double spacingVertical;
   final List<Widget> children;
 
-  Widget space() => SizedBox(width: spacing, height: spacing);
+  Widget space() => SizedBox(width: spacingHorizontal, height: spacingVertical);
 
   List<Widget> rows(List<Widget> children) {
     final List<Widget> rows = [];

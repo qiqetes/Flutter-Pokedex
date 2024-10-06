@@ -23,8 +23,7 @@ class Pokemon with _$Pokemon {
       types: (json['pokemon_v2_pokemontypes'] as List)
           .map((type) => PokeType.fromResource(type))
           .toList(),
-      spriteUrl: (json['pokemon_v2_pokemonsprites'] as List).first['sprites']
-          as String,
+      spriteUrl: (json['pokemon_v2_pokemonsprites'] as List).first['sprites'],
     );
   }
 }

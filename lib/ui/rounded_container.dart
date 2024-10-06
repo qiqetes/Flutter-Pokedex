@@ -11,6 +11,7 @@ class RoundedContainer extends StatelessWidget {
   final EdgeInsets? padding;
   final String? backgroundImage;
   final bool hasShadow;
+  final bool clipped;
 
   const RoundedContainer({
     super.key,
@@ -22,6 +23,7 @@ class RoundedContainer extends StatelessWidget {
     this.margin,
     this.backgroundImage,
     this.hasShadow = false,
+    this.clipped = true,
   }) : assert(linearGradientColor1 != null && linearGradientColor2 != null ||
             linearGradientColor1 == null && linearGradientColor2 == null);
 
@@ -29,7 +31,7 @@ class RoundedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: clipped ? Clip.hardEdge : Clip.none,
       padding: padding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -76,6 +78,7 @@ class RoundedButton extends StatelessWidget {
   final VoidCallback onTap;
   final Widget? child;
   final String? backgroundImage;
+  final bool clipped;
 
   const RoundedButton({
     super.key,
@@ -87,6 +90,7 @@ class RoundedButton extends StatelessWidget {
     this.child,
     this.linearGradientColor1,
     this.linearGradientColor2,
+    this.clipped = true,
   }) : assert(linearGradientColor1 != null && linearGradientColor2 != null ||
             linearGradientColor1 == null && linearGradientColor2 == null);
 
@@ -98,6 +102,7 @@ class RoundedButton extends StatelessWidget {
         linearGradientColor2: linearGradientColor2,
         margin: margin,
         padding: const EdgeInsets.all(0),
+        clipped: clipped,
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -119,6 +124,7 @@ class RoundedButton extends StatelessWidget {
       backgroundImage: backgroundImage,
       margin: margin,
       padding: const EdgeInsets.all(0),
+      clipped: clipped,
       child: Material(
         color: Colors.transparent,
         child: InkWell(

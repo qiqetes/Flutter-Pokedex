@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/features/home/home_screen.dart';
+import 'package:pokedex_flutter/features/caputred_screen/captured_screen.dart';
+import 'package:pokedex_flutter/features/home_screen/home_screen.dart';
 import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
 import 'package:pokedex_flutter/features/splash_screen/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pokedex_flutter/features/type_screen/type_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  // final routes = ref.watch(routesProvider);
-  // print(routes);
   return GoRouter(
-    initialLocation: '/splash',
+    initialLocation: '/',
     routes: [
-      GoRoute(
-        path: '/splash',
-        builder: (context, state) => const SplashScreen(),
-      ),
       ShellRoute(
         builder: (context, state, child) => NavigationShell(child: child),
         routes: [
@@ -29,11 +25,11 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/type/:id',
             builder: (context, state) =>
-                Center(child: Text(state.pathParameters['id']!)),
+                TypeScreen(typeString: state.pathParameters['id']!),
           ),
           GoRoute(
             path: '/captured',
-            builder: (context, state) => const Center(child: Text('Captued')),
+            builder: (context, state) => const CapturedScreen(),
           ),
         ],
       ),

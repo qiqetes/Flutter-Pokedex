@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/features/navigation/bottom_gradient.dart';
 import 'package:pokedex_flutter/features/navigation/nav_bar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
+import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class NavigationShell extends StatefulWidget {
   const NavigationShell({super.key, required this.child});
   final Widget child;
 
   @override
-  _NavigationShellState createState() => _NavigationShellState();
+  NavigationShellState createState() => NavigationShellState();
 }
 
-class _NavigationShellState extends State<NavigationShell> {
+class NavigationShellState extends State<NavigationShell> {
   int _currentIndex = 0;
 
-  final List<String> _screenPaths = ["/home", "/stats", "/profile"];
+  final List<String> _screenPaths = ["/", "/captured"];
 
   void onNavigate(int index) {
     setState(() {
@@ -25,49 +29,103 @@ class _NavigationShellState extends State<NavigationShell> {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mqd = MediaQuery.of(context);
-    final MediaQueryData newMqd = mqd.copyWith(
-        padding: mqd.padding.copyWith(bottom: 80),
-        viewPadding: mqd.viewPadding.copyWith(bottom: 80));
+    final isBigScreen = MediaQuery.sizeOf(context).width > 600;
 
-    return HeroControllerScope(
-      controller: MaterialApp.createMaterialHeroController(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Builder(builder: (context) {
-              return MediaQuery(data: newMqd, child: widget.child);
-            }),
-            const BottomGradient(),
-            Positioned(
-              width: MediaQuery.of(context).size.width,
-              bottom: 0,
-              child: SafeArea(
-                child: NavBar(
-                  selectedIndex: _currentIndex,
-                  onNavigate: onNavigate,
-                ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: isBigScreen
+          ? _DesktopLayout(
+              onNavigate: onNavigate,
+              selectedIndex: _currentIndex,
+              child: widget.child,
+            )
+          : _AppLayout(
+              onNavigate: onNavigate,
+              selectedIndex: _currentIndex,
+              child: widget.child,
+            ),
+    );
+  }
+}
+
+class _DesktopLayout extends ConsumerWidget {
+  const _DesktopLayout(
+      {required this.child,
+      required this.onNavigate,
+      required this.selectedIndex});
+  final Widget child;
+  final void Function(int) onNavigate;
+  final int selectedIndex;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final PokeType predominantType = ref.watch(predominantTypeProvider);
+    return Row(
+      children: [
+        NavigationRail(
+          backgroundColor: kColBlack,
+          selectedIndex: selectedIndex,
+          onDestinationSelected: onNavigate,
+          labelType: NavigationRailLabelType.all,
+          destinations: [
+            NavigationRailDestination(
+              icon: Icon(
+                Icons.search,
+                color: selectedIndex == 0 ? predominantType.color : kColWhite,
               ),
+              label: const Text('Home'),
+            ),
+            NavigationRailDestination(
+              icon: Image.asset(
+                'assets/images/pokeball_logo_white.png',
+                width: 24,
+                color: selectedIndex == 1 ? predominantType.color : kColWhite,
+              ),
+              label: const Text('Captured'),
             ),
           ],
         ),
-      ),
+        const VerticalDivider(thickness: 1, width: 1),
+        Expanded(child: child),
+      ],
     );
-    // // return Container(color: Colors.pink);
-    // final prevMediaQuery = MediaQuery.of(context);
-    // final newMediaQueryData = prevMediaQuery.copyWith(
-    //     padding: prevMediaQuery.padding.copyWith(bottom: 50),
-    //     viewPadding: prevMediaQuery.viewPadding.copyWith(bottom: 50));
-    // return SafeArea(
-    //     child: Container(
-    //   color: Colors.pink,
-    //   child: Builder(builder: (context) {
-    //     // final newMediaQueryData = MediaQuery.of(context).copyWith(
-    //     //     padding: const EdgeInsets.only(bottom: 0),
-    //     //     viewPadding: const EdgeInsets.only(bottom: 50));
-    //     return MediaQuery(data: newMediaQueryData, child: widget.child);
-    //   }),
-    // ));
+  }
+}
+
+class _AppLayout extends StatelessWidget {
+  const _AppLayout(
+      {required this.child,
+      required this.onNavigate,
+      required this.selectedIndex});
+  final Widget child;
+  final void Function(int) onNavigate;
+  final int selectedIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    final MediaQueryData mqd = MediaQuery.of(context);
+    final MediaQueryData newMqd = mqd.copyWith(
+        padding: mqd.padding.copyWith(bottom: 80 + mqd.padding.bottom),
+        viewPadding:
+            mqd.viewPadding.copyWith(bottom: 80 + mqd.viewPadding.bottom));
+
+    return Stack(
+      children: [
+        Builder(builder: (context) {
+          return MediaQuery(data: newMqd, child: child);
+        }),
+        const BottomGradient(),
+        Positioned(
+          width: MediaQuery.of(context).size.width,
+          bottom: 0,
+          child: SafeArea(
+            child: NavBar(
+              selectedIndex: selectedIndex,
+              onNavigate: onNavigate,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
