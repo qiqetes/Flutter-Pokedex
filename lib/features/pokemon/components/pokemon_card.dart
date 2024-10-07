@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
+import 'package:pokedex_flutter/features/pokemon/providers/current_pokemon_provider.dart';
 import 'package:pokedex_flutter/ui/rounded_container.dart';
+import 'package:go_router/go_router.dart';
 
 class PokemonCard extends ConsumerWidget {
   const PokemonCard(
@@ -22,7 +24,9 @@ class PokemonCard extends ConsumerWidget {
       padding: EdgeInsets.zero,
       color: pokemon.types.first.secondaryColor.withAlpha(200),
       onTap: () {
-        ref.read(capturedPokemonProvider.notifier).capture(pokemon);
+        ref.read(currentPokemonProvider.notifier).state = pokemon;
+        context.push('/pokemon/${pokemon.id}');
+        // ref.read(capturedPokemonProvider.notifier).capture(pokemon);
       },
       clipped: false,
       child: SizedBox(
