@@ -24,6 +24,7 @@ mixin _$Pokemon {
   String get name => throw _privateConstructorUsedError;
   List<PokeType> get types => throw _privateConstructorUsedError;
   String get spriteUrl => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
   dynamic get required => throw _privateConstructorUsedError;
 
   /// Serializes this Pokemon to a JSON map.
@@ -45,6 +46,7 @@ abstract class $PokemonCopyWith<$Res> {
       String name,
       List<PokeType> types,
       String spriteUrl,
+      int height,
       dynamic required});
 }
 
@@ -67,6 +69,7 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? name = null,
     Object? types = null,
     Object? spriteUrl = null,
+    Object? height = null,
     Object? required = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,6 +89,10 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
           ? _value.spriteUrl
           : spriteUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
       required: freezed == required
           ? _value.required
           : required // ignore: cast_nullable_to_non_nullable
@@ -106,6 +113,7 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
       String name,
       List<PokeType> types,
       String spriteUrl,
+      int height,
       dynamic required});
 }
 
@@ -126,6 +134,7 @@ class __$$PokemonImplCopyWithImpl<$Res>
     Object? name = null,
     Object? types = null,
     Object? spriteUrl = null,
+    Object? height = null,
     Object? required = freezed,
   }) {
     return _then(_$PokemonImpl(
@@ -145,6 +154,10 @@ class __$$PokemonImplCopyWithImpl<$Res>
           ? _value.spriteUrl
           : spriteUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
       required: freezed == required ? _value.required! : required,
     ));
   }
@@ -158,6 +171,7 @@ class _$PokemonImpl implements _Pokemon {
       required this.name,
       required final List<PokeType> types,
       required this.spriteUrl,
+      required this.height,
       this.required})
       : _types = types;
 
@@ -179,11 +193,13 @@ class _$PokemonImpl implements _Pokemon {
   @override
   final String spriteUrl;
   @override
+  final int height;
+  @override
   final dynamic required;
 
   @override
   String toString() {
-    return 'Pokemon(id: $id, name: $name, types: $types, spriteUrl: $spriteUrl, required: $required)';
+    return 'Pokemon(id: $id, name: $name, types: $types, spriteUrl: $spriteUrl, height: $height, required: $required)';
   }
 
   @override
@@ -196,6 +212,7 @@ class _$PokemonImpl implements _Pokemon {
             const DeepCollectionEquality().equals(other._types, _types) &&
             (identical(other.spriteUrl, spriteUrl) ||
                 other.spriteUrl == spriteUrl) &&
+            (identical(other.height, height) || other.height == height) &&
             const DeepCollectionEquality().equals(other.required, required));
   }
 
@@ -207,6 +224,7 @@ class _$PokemonImpl implements _Pokemon {
       name,
       const DeepCollectionEquality().hash(_types),
       spriteUrl,
+      height,
       const DeepCollectionEquality().hash(required));
 
   /// Create a copy of Pokemon
@@ -231,6 +249,7 @@ abstract class _Pokemon implements Pokemon {
       required final String name,
       required final List<PokeType> types,
       required final String spriteUrl,
+      required final int height,
       final dynamic required}) = _$PokemonImpl;
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
@@ -243,6 +262,8 @@ abstract class _Pokemon implements Pokemon {
   List<PokeType> get types;
   @override
   String get spriteUrl;
+  @override
+  int get height;
   @override
   dynamic get required;
 

@@ -8,6 +8,7 @@ void main() {
       final Map<String, dynamic> json = {
         "name": "bulbasaur",
         "id": 1,
+        "height": 7,
         "pokemon_v2_pokemontypes": [
           {
             "pokemon_v2_type": {"name": "grass"}
@@ -31,6 +32,8 @@ void main() {
       expect(pokemon.types.length, 2);
       expect(pokemon.types[0].name, "grass");
       expect(pokemon.types[1], PokeType.poison);
+      expect(pokemon.height, 7);
+
       expect(pokemon.spriteUrl,
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png");
     });
