@@ -16,7 +16,6 @@ void main() {
 
     test('fetchPokemons not null, made it to see if it works', () async {
       final pokemons = await repository.fetchPokemons(name: 'bulbasaur');
-      print(pokemons);
       expect(pokemons, isNotNull);
     });
   });

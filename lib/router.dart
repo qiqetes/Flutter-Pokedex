@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/features/caputred_screen/captured_screen.dart';
 import 'package:pokedex_flutter/features/home_screen/home_screen.dart';
 import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
-import 'package:pokedex_flutter/features/splash_screen/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_flutter/features/type_screen/type_screen.dart';

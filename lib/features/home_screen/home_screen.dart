@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pokedex_flutter/app.dart';
 import 'package:pokedex_flutter/features/home_screen/custom_appbar.dart';
-import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
 import 'package:pokedex_flutter/features/pokemon/components/pokemon_list.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/pokemon_provider.dart';
-import 'package:pokedex_flutter/router.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 import 'package:pokedex_flutter/ui/not_found_widget.dart';
 import 'package:pokedex_flutter/ui/responsive_grid.dart';
@@ -86,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _TypeSearchBubbles extends StatelessWidget {
-  const _TypeSearchBubbles({super.key});
+  const _TypeSearchBubbles();
 
   @override
   Widget build(BuildContext context) {
