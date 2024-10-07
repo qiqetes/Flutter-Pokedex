@@ -35,7 +35,7 @@ class TypeScreen extends StatelessWidget {
 
         switch (pokemonController) {
           case AsyncError():
-            return const Center(child: NotFoundWidget()); // TODO: MissingNo.
+            return const Center(child: NotFoundWidget());
 
           case AsyncData(:final value):
             return PokemonList(
