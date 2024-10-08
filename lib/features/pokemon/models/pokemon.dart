@@ -11,6 +11,7 @@ class Pokemon with _$Pokemon {
       required String name,
       required List<PokeType> types,
       required String spriteUrl,
+      required int height,
       required}) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, Object?> json) =>
@@ -23,6 +24,7 @@ class Pokemon with _$Pokemon {
       types: (json['pokemon_v2_pokemontypes'] as List)
           .map((type) => PokeType.fromResource(type))
           .toList(),
+      height: json['height'] as int,
       spriteUrl: (json['pokemon_v2_pokemonsprites'] as List).first['sprites'],
     );
   }

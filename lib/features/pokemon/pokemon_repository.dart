@@ -36,6 +36,7 @@ class PokemonRepository {
             sprites(path: "front_default")
           }
           id
+          height
         }
       }
     ''';
