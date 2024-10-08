@@ -75,7 +75,7 @@ class PokemonScreen extends ConsumerWidget {
           ),
           Center(
             child: Transform.translate(
-              offset: const Offset(0, -30),
+              offset: const Offset(0, -60),
               child: Image.network(
                 pokemon.spriteUrl,
                 filterQuality: FilterQuality.none,
@@ -100,44 +100,48 @@ class _BackgroundTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool hasTwoTypes = pokemon.types.length > 1;
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppBar(
-            backgroundColor: Colors.transparent,
-            leading: IconButton(
-              onPressed: () => context.pop(),
-              icon: const Icon(Icons.arrow_back),
-            ),
-            actions: const [_CaptureButton()],
+    return Stack(
+      children: [
+        Positioned(
+          right: -80,
+          top: -50,
+          child: Image.asset(
+            'assets/images/pokeball_logo_white.png',
+            width: 400,
+            height: 400,
+            color: hasTwoTypes
+                ? pokemon.types[1].color.withAlpha(200)
+                : pokemon.types[0].secondaryColor,
           ),
-          Row(
-            children: [
-              Text(pokemon.name.capitalize(),
-                  style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(width: 16),
-              Text(
-                "#${pokemon.id}",
-                style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(Icons.arrow_back),
               ),
-            ],
-          ),
-        ],
-      ),
-      // child: Row(
-      //   mainAxisSize: MainAxisSize.max,
-      //   children: [
-      //     Text(pokemon.name.capitalize(),
-      //         style: Theme.of(context).textTheme.titleLarge),
-      //     const SizedBox(width: 16),
-      //     Text(
-      //       "#${pokemon.id}",
-      //       style: Theme.of(context).textTheme.titleMedium,
-      //     )
-      //   ],
-      // ),
+              actions: const [_CaptureButton()],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  Text(pokemon.name.capitalize(),
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(width: 16),
+                  Text(
+                    "#${pokemon.id}",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
