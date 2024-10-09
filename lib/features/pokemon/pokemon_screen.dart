@@ -20,81 +20,29 @@ class PokemonScreen extends ConsumerWidget {
     }
 
     List<PokeType> pokeType = pokemon.types;
-    bool isCaptured = ref.watch(capturedPokemonProvider).contains(pokemon);
-    double screenWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: pokeType.first.color,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back),
-        ),
-        actions: [
-          IconButton(
-            icon: AnimatedContainer(
-                padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                decoration: BoxDecoration(
-                  color: isCaptured
-                      ? pokeType[0].secondaryColor
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(300),
-                ),
-                duration: const Duration(milliseconds: 300),
-                child: Row(
-                  children: [
-                    if (isCaptured) const SizedBox(width: 10),
-                    if (isCaptured) const Text('CAPTURED!'),
-                    if (isCaptured) const SizedBox(width: 16),
-                    Image.asset('assets/images/pokeball_logo_white.png'),
-                  ],
-                )),
-            onPressed: () {
-              ref.read(capturedPokemonProvider.notifier).capture(pokemon);
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(pokemon.name.capitalize(),
-                    style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(width: 16),
-                Text(
-                  "#${pokemon.id}",
-                  style: Theme.of(context).textTheme.titleMedium,
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top: screenWidth * 0.5),
-              clipBehavior: Clip.none,
-              color: Colors.white,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    top: -screenWidth * 0.7,
-                    child: Center(
-                      child: Image.network(
-                        pokemon.spriteUrl,
-                        filterQuality: FilterQuality.none,
-                        scale: 1 / 5,
-                      ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(flex: 1, child: _BackgroundTitle(pokemon: pokemon)),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(32),
+                      topRight: Radius.circular(32),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 150.0),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('${pokemon.height} feet'),
                         const SizedBox(height: 16),
@@ -119,12 +67,111 @@ class PokemonScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                ],
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: Transform.translate(
+              offset: const Offset(0, -60),
+              child: Image.network(
+                pokemon.spriteUrl,
+                filterQuality: FilterQuality.none,
+                scale: 1 / 5,
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _BackgroundTitle extends StatelessWidget {
+  const _BackgroundTitle({
+    super.key,
+    required this.pokemon,
+  });
+
+  final Pokemon pokemon;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool hasTwoTypes = pokemon.types.length > 1;
+    return Stack(
+      children: [
+        Positioned(
+          right: -80,
+          top: -50,
+          child: Image.asset(
+            'assets/images/pokeball_logo_white.png',
+            width: 400,
+            height: 400,
+            color: hasTwoTypes
+                ? pokemon.types[1].color.withAlpha(200)
+                : pokemon.types[0].secondaryColor,
+          ),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(Icons.arrow_back),
+              ),
+              actions: const [_CaptureButton()],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  Text(pokemon.name.capitalize(),
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(width: 16),
+                  Text(
+                    "#${pokemon.id}",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _CaptureButton extends ConsumerWidget {
+  const _CaptureButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    Pokemon pokemon = ref.watch(currentPokemonProvider.notifier).state!;
+    List<PokeType> pokeType = pokemon.types;
+    bool isCaptured = ref.watch(capturedPokemonProvider).contains(pokemon);
+
+    return IconButton(
+      icon: AnimatedContainer(
+          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+          decoration: BoxDecoration(
+            color: isCaptured ? pokeType[0].secondaryColor : Colors.transparent,
+            borderRadius: BorderRadius.circular(300),
+          ),
+          duration: const Duration(milliseconds: 300),
+          child: Row(
+            children: [
+              if (isCaptured) const SizedBox(width: 10),
+              if (isCaptured) const Text('CAPTURED!'),
+              if (isCaptured) const SizedBox(width: 16),
+              Image.asset('assets/images/pokeball_logo_white.png'),
+            ],
+          )),
+      onPressed: () {
+        ref.read(capturedPokemonProvider.notifier).capture(pokemon);
+      },
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -89,7 +91,7 @@ class _TypesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final numColumns = screenWidth ~/ 350;
+    final numColumns = max(screenWidth ~/ 350, 1);
 
     return SingleChildScrollView(
         child: SafeArea(
@@ -130,6 +132,7 @@ class _TypeBubble extends StatelessWidget {
                     height: 100,
                     width: 100,
                     color: type.color,
+                    // placeholderBuilder: (context) => const CircularProgressIndicator(),z
                   )),
               Center(
                 child: Text(
