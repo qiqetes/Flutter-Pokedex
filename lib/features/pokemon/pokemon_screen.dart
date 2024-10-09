@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex_flutter/features/pokemon/components/pokemon_card.dart';
-import 'package:pokedex_flutter/features/pokemon/components/pokemon_list.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/current_pokemon_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pokedex_flutter/helpers/extensions.dart';
 import 'package:pokedex_flutter/ui/rounded_container.dart';
 
 class PokemonScreen extends ConsumerWidget {
@@ -21,9 +20,7 @@ class PokemonScreen extends ConsumerWidget {
     }
 
     List<PokeType> pokeType = pokemon.types;
-    bool hasTwoTypes = pokeType.length > 1;
     bool isCaptured = ref.watch(capturedPokemonProvider).contains(pokemon);
-    double thumbnailSize = MediaQuery.sizeOf(context).height * 0.2;
     double screenWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: pokeType.first.color,

@@ -28,4 +28,8 @@ class Pokemon with _$Pokemon {
       spriteUrl: (json['pokemon_v2_pokemonsprites'] as List).first['sprites'],
     );
   }
+
+  const Pokemon._();
+
+  bool get hasTwoTypes => types.length > 1;
 }

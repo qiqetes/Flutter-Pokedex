@@ -24,15 +24,15 @@ class NavBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _NavIcon(
-              Icon(Icons.search,
+            IconButton(
+              icon: Icon(Icons.search,
                   size: 40,
                   color:
                       selectedIndex == 0 ? PokeType.water.color : Colors.white),
               onPressed: () => onNavigate(0),
             ),
-            _NavIcon(
-              Image.asset('assets/images/pokeball_logo_white.png',
+            IconButton(
+              icon: Image.asset('assets/images/pokeball_logo_white.png',
                   color:
                       selectedIndex == 1 ? PokeType.water.color : Colors.white),
               onPressed: () => onNavigate(1),
@@ -40,25 +40,6 @@ class NavBar extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-// TODO: remove
-class _NavIcon extends StatelessWidget {
-  const _NavIcon(
-    this.icon, {
-    required this.onPressed,
-    // required this.isSelected,
-  });
-  final Widget icon;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: icon,
-      onPressed: onPressed,
     );
   }
 }

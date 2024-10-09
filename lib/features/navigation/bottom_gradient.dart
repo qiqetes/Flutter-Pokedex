@@ -23,8 +23,7 @@ class BottomGradient extends ConsumerWidget {
               end: Alignment.bottomCenter,
               colors: [
                 kColWhite.withOpacity(0.0),
-                predominantType
-                    .secondaryColor // TODO: change to most used color
+                predominantType.color.withOpacity(0.8),
               ],
             ),
           ),

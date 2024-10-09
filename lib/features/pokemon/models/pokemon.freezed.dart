@@ -165,7 +165,7 @@ class __$$PokemonImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PokemonImpl implements _Pokemon {
+class _$PokemonImpl extends _Pokemon {
   const _$PokemonImpl(
       {required this.id,
       required this.name,
@@ -173,7 +173,8 @@ class _$PokemonImpl implements _Pokemon {
       required this.spriteUrl,
       required this.height,
       this.required})
-      : _types = types;
+      : _types = types,
+        super._();
 
   factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonImplFromJson(json);
@@ -243,7 +244,7 @@ class _$PokemonImpl implements _Pokemon {
   }
 }
 
-abstract class _Pokemon implements Pokemon {
+abstract class _Pokemon extends Pokemon {
   const factory _Pokemon(
       {required final int id,
       required final String name,
@@ -251,6 +252,7 @@ abstract class _Pokemon implements Pokemon {
       required final String spriteUrl,
       required final int height,
       final dynamic required}) = _$PokemonImpl;
+  const _Pokemon._() : super._();
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
 
