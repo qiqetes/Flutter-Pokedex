@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex_flutter/features/home_screen/custom_appbar.dart';
 import 'package:pokedex_flutter/features/pokemon/components/pokemon_list.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
+import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/pokemon_provider.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 import 'package:pokedex_flutter/ui/not_found_widget.dart';
@@ -26,9 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     searchController.addListener(() {
-      setState(() {
-        searchText = searchController.text;
-      });
+      setState(() => searchText = searchController.text);
     });
   }
 
@@ -61,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SliverToBoxAdapter(
             child: searchText.isEmpty
-                ? const _TypeSearchBubbles()
+                ? const _TypesList()
                 : Consumer(
                     builder: (context, ref, child) {
                       final res = ref.watch(
@@ -70,6 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         case AsyncError():
                           return const Center(child: NotFoundWidget());
                         case AsyncData(:final value):
+                          return PokemonList(pokemons: value);
+                        case AsyncLoading(:final List<Pokemon> value):
                           return PokemonList(pokemons: value);
                         default:
                           return const Center(
@@ -82,8 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _TypeSearchBubbles extends StatelessWidget {
-  const _TypeSearchBubbles();
+class _TypesList extends StatelessWidget {
+  const _TypesList();
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +117,6 @@ class _TypeBubble extends StatelessWidget {
       padding: EdgeInsets.zero,
       onTap: () => context.push('/type/${type.name}'),
       color: type.secondaryColor,
-      // linearGradientColor1: type.secondaryColor,
       child: SizedBox(
           height: 73,
           width: double.infinity,
