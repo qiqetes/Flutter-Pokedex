@@ -11,7 +11,7 @@ class Pokemon with _$Pokemon {
       required String name,
       required List<PokeType> types,
       required String spriteUrl,
-      @Default(0) required int height,
+      @Default(0) int height,
       required}) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, Object?> json) =>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Capa_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 255.1 255.1"
+   style="enable-background:new 0 0 255.1 255.1;"
+   xml:space="preserve"
+   sodipodi:docname="grass_icon.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs7803" /><sodipodi:namedview
+   id="namedview7801"
+   pagecolor="#bababa"
+   bordercolor="#999999"
+   borderopacity="1"
+   inkscape:showpageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="2.8467215"
+   inkscape:cx="133.48689"
+   inkscape:cy="147.18686"
+   inkscape:window-width="2560"
+   inkscape:window-height="1417"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Capa_1" />
+<style
+   type="text/css"
+   id="style7794">
+	.st0{fill:#B567CE;}
+	.st1{fill:#FEFEFE;}
+</style>
+<path
+   id="circle7796"
+   style="fill:#ffffff;fill-opacity:1"
+   class="st0"
+   d="M 127.59961 6 C 60.442156 6.0002154 6.0002154 60.442156 6 127.59961 C 6.0002154 194.75706 60.442156 249.199 127.59961 249.19922 C 194.75706 249.199 249.199 194.75706 249.19922 127.59961 C 249.199 60.442156 194.75706 6.0002154 127.59961 6 z M 172.41602 40.296875 C 172.44372 40.311515 172.41385 40.431924 172.49805 40.339844 L 172.44141 40.449219 C 172.59817 41.314032 191.15566 144.02045 169.28906 185.33984 C 153.62796 214.93327 115.78024 215.85048 95.302734 213.95117 C 98.5135 205.8323 103.50018 193.74675 109.53906 179.36133 L 145.05664 171.50195 L 114.23438 168.21484 C 118.6845 157.67238 122.89389 147.77785 127.47461 137.03125 L 147.22266 132.11133 L 130.67773 129.53125 C 142.83764 101.05138 152.95098 77.54832 153.80273 75.568359 C 152.64465 77.386209 138.89898 98.966881 122.18945 125.03906 L 110.75 112.80859 L 117.78906 131.90625 C 111.47955 141.73795 105.66534 150.78367 99.451172 160.39258 L 79.398438 136.75586 L 92.876953 170.54492 C 84.378796 183.62888 77.188517 194.54651 72.28125 201.76758 C 59.193761 185.90398 38.667017 154.09538 54.328125 124.50195 C 76.194718 83.182555 171.55418 40.761072 172.35742 40.404297 L 172.41602 40.296875 z " />
+
+</svg>

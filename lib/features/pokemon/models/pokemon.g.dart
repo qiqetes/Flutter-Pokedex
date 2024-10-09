@@ -14,7 +14,7 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
           .map((e) => $enumDecode(_$PokeTypeEnumMap, e))
           .toList(),
       spriteUrl: json['spriteUrl'] as String,
-      height: (json['height'] as num).toInt(),
+      height: (json['height'] as num?)?.toInt() ?? 0,
       required: json['required'],
     );
 

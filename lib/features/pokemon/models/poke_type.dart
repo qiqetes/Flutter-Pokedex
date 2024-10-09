@@ -43,4 +43,6 @@ enum PokeType {
             .firstWhereOrNull((element) => element.name == typeStr) ??
         PokeType.normal;
   }
+
+  String get logoPath => 'assets/images/type_logos/${name}_icon.svg';
 }

@@ -121,7 +121,7 @@ class _SecondaryTypeIndicator extends StatelessWidget {
             child: Transform.translate(
               offset: const Offset(30, -40),
               child: SvgPicture.asset(
-                'assets/images/pokeball_icon.svg',
+                pokemon.types.last.logoPath,
                 width: 200,
                 color: pokemon.types.last.color,
               ),

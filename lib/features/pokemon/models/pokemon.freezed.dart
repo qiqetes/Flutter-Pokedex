@@ -171,7 +171,7 @@ class _$PokemonImpl extends _Pokemon {
       required this.name,
       required final List<PokeType> types,
       required this.spriteUrl,
-      required this.height,
+      this.height = 0,
       this.required})
       : _types = types,
         super._();
@@ -194,6 +194,7 @@ class _$PokemonImpl extends _Pokemon {
   @override
   final String spriteUrl;
   @override
+  @JsonKey()
   final int height;
   @override
   final dynamic required;
@@ -250,7 +251,7 @@ abstract class _Pokemon extends Pokemon {
       required final String name,
       required final List<PokeType> types,
       required final String spriteUrl,
-      required final int height,
+      final int height,
       final dynamic required}) = _$PokemonImpl;
   const _Pokemon._() : super._();
 

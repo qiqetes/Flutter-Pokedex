@@ -71,6 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         case AsyncError():
                           return const Center(child: NotFoundWidget());
                         case AsyncData(:final value):
+                          if (value.isEmpty) {
+                            return const Center(child: NotFoundWidget());
+                          }
                           return PokemonList(pokemons: value);
                         case AsyncLoading(:final List<Pokemon> value):
                           return PokemonList(pokemons: value);
