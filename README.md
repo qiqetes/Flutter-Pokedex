@@ -1,4 +1,4 @@
-# Attempt of doing a well loking Pokedex with flutter
+# Attempt of doing a well looking Pokedex with flutter
 
 Made using:
 
