@@ -9,7 +9,12 @@ It was a weekend project so the code is not perfect. Following sort of MVC archi
 
 **Interesting bits:** It can cache the api searches, so the same search won't trigger a new request; Infinite Scrolling; Responsive design;
 
-## Requirements
+
+# Showcase:
+![Showcase Phone App](./showcaseImages/showcase_phone_app.gif)
+
+
+## Requirements (By the interviewer company)
 
 ### Goal
 

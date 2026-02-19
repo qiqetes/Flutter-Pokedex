@@ -42,30 +42,32 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          expandedHeight: 175 - MediaQuery.of(context).padding.top,
-          floating: false,
-          pinned: true,
-          flexibleSpace: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              var top = constraints.biggest.height;
-              bool isShrink = top < 170;
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 175 - MediaQuery.of(context).padding.top,
+            floating: false,
+            pinned: true,
+            flexibleSpace: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                var top = constraints.biggest.height;
+                bool isShrink = top < 170;
 
-              return CustomAppBar(
-                isShrink: isShrink,
-                textEditingController: searchController,
-              );
-            },
+                return CustomAppBar(
+                  isShrink: isShrink,
+                  textEditingController: searchController,
+                );
+              },
+            ),
           ),
-        ),
-        SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: searchText.isEmpty
                 ? const _TypesList()
                 : Consumer(
                     builder: (context, ref, child) {
-                      final res = ref.watch(pokemonControllerProvider(searchName: searchText));
+                      final res = ref.watch(
+                        pokemonControllerProvider(searchName: searchText),
+                      );
                       switch (res) {
                         case AsyncError():
                           return const Center(child: NotFoundWidget());
@@ -77,12 +79,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         case AsyncLoading(:final List<Pokemon> value):
                           return PokemonList(pokemons: value);
                         default:
-                          return const Center(child: CircularProgressIndicator());
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
                       }
                     },
-                  )),
-      ],
-    ));
+                  ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -95,18 +101,20 @@ class _TypesList extends StatelessWidget {
     final numColumns = max(screenWidth ~/ 350, 1);
 
     return SingleChildScrollView(
-        child: SafeArea(
-      top: false,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ResponsiveGrid(
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ResponsiveGrid(
             numColumns: numColumns,
             spacingHorizontal: 12,
             children: PokeType.values.map((type) {
               return _TypeBubble(type);
-            }).toList()),
+            }).toList(),
+          ),
+        ),
       ),
-    ));
+    );
   }
 }
 
@@ -121,30 +129,33 @@ class _TypeBubble extends StatelessWidget {
       onTap: () => context.push('/type/${type.name}'),
       color: type.secondaryColor,
       child: SizedBox(
-          height: 73,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              Positioned(
-                  top: -10,
-                  right: -10,
-                  child: SvgPicture.asset(
-                    "assets/images/type_logos/${type.name}_icon.svg",
-                    height: 100,
-                    width: 100,
-                    color: type.color,
-                    // placeholderBuilder: (context) => const CircularProgressIndicator(),z
-                  )),
-              Center(
-                child: Text(
-                  type.name.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: lightText ? Colors.white : Colors.black,
-                      ),
+        height: 73,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Positioned(
+              top: -10,
+              right: -10,
+              child: SvgPicture.asset(
+                "assets/images/type_logos/${type.name}_icon.svg",
+                height: 100,
+                width: 100,
+                // ignore: deprecated_member_use
+                color: type.color,
+                // placeholderBuilder: (context) => const CircularProgressIndicator(),z
+              ),
+            ),
+            Center(
+              child: Text(
+                type.name.toUpperCase(),
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: lightText ? Colors.white : Colors.black,
                 ),
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
