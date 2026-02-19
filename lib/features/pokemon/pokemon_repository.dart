@@ -1,7 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
-import 'package:collection/collection.dart';
 
 class PokemonRepository {
   final GraphQLClient _client;
@@ -15,14 +14,17 @@ class PokemonRepository {
     List<PokeType>? types,
   }) async {
     // FIXME: queryInjections, use variables instead
-    final String nameFilter = name != null && name.isNotEmpty ? ', name: {_ilike: "$name%"}' : '';
+    final String nameFilter = name != null && name.isNotEmpty
+        ? ', name: {_ilike: "$name%"}'
+        : '';
     final String typesFilter = types != null && types.isNotEmpty
         ? ', pokemon_v2_pokemontypes: {type_id: {_in: ${types.map((t) => t.typeId).join(',')}}}'
         : '';
     final String whereFilter =
         ', where: {is_default: {_eq: true}, pokemon_v2_pokemonsprites: {sprites: {_has_key: "front_default"}}$nameFilter$typesFilter}';
 
-    final String query = '''
+    final String query =
+        '''
       query fetchPokemons() {
         pokemon_v2_pokemon(limit: $limit, offset: $offset$whereFilter) {
           name
@@ -57,7 +59,7 @@ class PokemonRepository {
             //
           }
         })
-        .whereNotNull()
+        .nonNulls
         .toList();
   }
 }

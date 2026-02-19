@@ -144,8 +144,9 @@ class _TypeBubble extends StatelessWidget {
                 "assets/images/type_logos/${type.name}_icon.svg",
                 height: 100,
                 width: 100,
+                // ignore: deprecated_member_use
                 color: type.color,
-                // placeholderBuilder: (context) => const CircularProgressIndicator(),z
+                // placeholderBuilder: (context) => const CircularProgressIndicator(),
               ),
             ),
             Center(

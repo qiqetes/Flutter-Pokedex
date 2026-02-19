@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/pokemon_provider.dart';

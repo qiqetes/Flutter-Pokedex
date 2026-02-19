@@ -24,8 +24,10 @@ class RoundedContainer extends StatelessWidget {
     this.backgroundImage,
     this.hasShadow = false,
     this.clipped = true,
-  }) : assert(linearGradientColor1 != null && linearGradientColor2 != null ||
-            linearGradientColor1 == null && linearGradientColor2 == null);
+  }) : assert(
+         linearGradientColor1 != null && linearGradientColor2 != null ||
+             linearGradientColor1 == null && linearGradientColor2 == null,
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,10 @@ class RoundedContainer extends StatelessWidget {
         boxShadow: [
           if (hasShadow)
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
-            )
+            ),
         ],
         image: backgroundImage != null
             ? DecorationImage(
@@ -50,7 +52,7 @@ class RoundedContainer extends StatelessWidget {
                 fit: BoxFit.cover,
                 colorFilter: child != null
                     ? ColorFilter.mode(
-                        Colors.black.withOpacity(0.5),
+                        Colors.black.withValues(alpha: 0.5),
                         BlendMode.darken,
                       )
                     : null,
@@ -91,8 +93,10 @@ class RoundedButton extends StatelessWidget {
     this.linearGradientColor1,
     this.linearGradientColor2,
     this.clipped = true,
-  }) : assert(linearGradientColor1 != null && linearGradientColor2 != null ||
-            linearGradientColor1 == null && linearGradientColor2 == null);
+  }) : assert(
+         linearGradientColor1 != null && linearGradientColor2 != null ||
+             linearGradientColor1 == null && linearGradientColor2 == null,
+       );
 
   @override
   Widget build(BuildContext context) {
