@@ -4,6 +4,7 @@ import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_flutter/features/pokemon/pokemon_screen.dart';
+import 'package:pokedex_flutter/features/pokemon/pokemon_view_model.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/current_pokemon_provider.dart';
 import 'package:pokedex_flutter/features/type_screen/type_screen.dart';
 
@@ -27,6 +28,7 @@ final routerProvider = Provider<GoRouter>((ref) {
                       ),
                     ),
                   ),
+                  pokemonDetailViewModelProvider,
                 ],
                 child: PokemonScreen(
                   pokemonId: int.parse(state.pathParameters['id']!),

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/models/pokemon.dart';
-import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
-import 'package:pokedex_flutter/features/pokemon/providers/current_pokemon_provider.dart';
+import 'package:pokedex_flutter/features/pokemon/pokemon_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_flutter/helpers/extensions.dart';
 import 'package:pokedex_flutter/ui/rounded_container.dart';
@@ -14,10 +13,7 @@ class PokemonScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Pokemon? pokemon = ref.watch(currentPokemonProvider);
-    if (pokemon == null) {
-      return const Center(child: Text('Error loading Pokemon'));
-    }
+    final pokemon = ref.watch(pokemonDetailViewModelProvider).pokemon;
 
     List<PokeType> pokeType = pokemon.types;
     return Scaffold(
@@ -149,9 +145,9 @@ class _CaptureButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Pokemon pokemon = ref.watch(currentPokemonProvider);
-    List<PokeType> pokeType = pokemon.types;
-    bool isCaptured = ref.watch(capturedPokemonProvider).contains(pokemon);
+    final viewModel = ref.watch(pokemonDetailViewModelProvider);
+    final List<PokeType> pokeType = viewModel.pokemon.types;
+    final bool isCaptured = viewModel.isCaptured;
 
     return IconButton(
       icon: AnimatedContainer(
@@ -171,7 +167,7 @@ class _CaptureButton extends ConsumerWidget {
         ),
       ),
       onPressed: () {
-        ref.read(capturedPokemonProvider.notifier).capture(pokemon);
+        ref.read(pokemonDetailViewModelProvider.notifier).toggleCapture();
       },
     );
   }

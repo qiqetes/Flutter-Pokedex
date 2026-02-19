@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/features/navigation/bottom_gradient.dart';
 import 'package:pokedex_flutter/features/navigation/nav_bar.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/pokedex_palette_provider.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
