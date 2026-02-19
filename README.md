@@ -1,105 +1,97 @@
 # Attempt of doing a well looking Pokedex with flutter
-
 Made using:
+It was a weekend project so the code is not perfect. Following sort of MVC architecture (also pushed a branch with the MVVM architecture). 
 
 - **Riverpod** as state manager
 - **GoRouter** for navigation
 - **Freezed** to define models with ease
-- **PokeApi** for requests
+- **PokeApi** for requests using GraphQL
 
-## Requisitos
+**Interesting bits:** It can cache the api searches, so the same search won't trigger a new request; Infinite Scrolling; Responsive design;
 
-### Objetivo
+## Requirements
 
-Tenemos reportes de entrenadores que usan teléfonos Android, Apple y ordenadores. Por lo que
-necesitamos que la Pokédex pueda ejecutarse en sistemas operativos **Android e iOS**. Para personas como yo
-que seguimos con nuestro Nokia 3310, podremos acceder a la Pokédex como **aplicación de escritorio** o **web**.
+### Goal
 
-### Descripción general:
+We have reports from trainers using Android phones, Apple devices, and computers. Therefore,
+we need the Pokédex to run on **Android and iOS** operating systems. For people like me
+who still use our Nokia 3310, we can access the Pokédex as a **desktop application** or **web app**.
 
-La Pokédex deberá tener las siguientes secciones:
+### Overview:
 
-- **Pokédex**: Lista de todos los Pokémon disponibles.
-- **Capturados**: Lista de los Pokémon capturados por el entrenador.
-- **Pokémon en detalle**: Cuando se hace click en un Pokémon tanto de la Pokédex como de los Capturados,
-  debería abrirse una nueva pantalla donde se verán más detalles sobre el Pokémon seleccionado.
+The Pokédex should have the following sections:
 
-**El menú puede ser de cualquier tipo** y dejamos a tu elección la decisión de cuál es el más adecuado
-para nuestro caso de uso.
+- **Pokédex**: List of all available Pokémon.
+- **Caught**: List of Pokémon caught by the trainer.
+- **Pokémon Details**: When clicking on a Pokémon from either the Pokédex or Caught sections,
+  a new screen should open showing more details about the selected Pokémon.
 
-Los datos serán obtenidos de la API pública de Pokémon llamada **PokéApi**, [aquí tienes su documentación](https://pokeapi.co/docs/v2).
+**The menu can be of any type** and we leave it to your choice to decide which is most appropriate
+for our use case.
 
-Ahora vamos a explicar más en profundidad qué queremos para cada pantalla...
+Data will be obtained from the public Pokémon API called **PokéAPI**, [see its documentation here](https://pokeapi.co/docs/v2).
+
+Now let's explain in more detail what we want for each screen...
 
 ### Pokédex
 
-En esta sección, queremos que el entrenador pueda ver todos los Pokémon disponibles en su región. Esta
-primera versión de la Pokédex va a ser probada en la región de Kanto, esto quiere decir que **solo
-queremos mostrar los primeros 151 Pokémon**.
+In this section, we want the trainer to see all available Pokémon in their region. This
+first version of the Pokédex will be tested in the Kanto region, which means we **only
+want to show the first 151 Pokémon**.
 
-También queremos dar al entrenador la oportunidad de buscar los Pokémon por nombre, por lo que **integraremos un buscador
-que filtrará la lista de Pokémon a los que se ajusten con el texto de la búsqueda**.
+We also want to give the trainer the opportunity to search for Pokémon by name, so **we'll integrate a search bar
+that filters the Pokémon list to those matching the search text**.
 
-Por supuesto, como hemos comentado antes, **al hacer click en un Pokémon de la lista, se abre otra pantalla con los detalles de dicho Pokémon**.
+Of course, as mentioned before, **clicking on a Pokémon in the list opens another screen with that Pokémon's details**.
 
-### Capturados
+### Caught
 
-En este apartado, queremos ver los Pokémon capturados por el entrenador. Al final, la Pokédex sirve para eso ¿no?
+In this section, we want to see the Pokémon caught by the trainer. After all, that's what the Pokédex is for, right?
 
-La lista de Pokémon capturados debe aparecer **ordenada por su id**. Aunque daremos al entrenador la
-posibilidad de **filtrar los Pokémon por tipo** y a **ordenarlos alfabéticamente**.
+The list of caught Pokémon must appear **ordered by their id**. However, we'll give the trainer the
+ability to **filter Pokémon by type** and **sort them alphabetically**.
 
-Al igual que en la pantalla de Pokédex, **al hacer clic en un Pokémon de la lista, se verán los detalles del Pokémon en otra pantalla**.
+Just like on the Pokédex screen, **clicking on a Pokémon in the list shows the Pokémon's details on another screen**.
 
-### Vista en detalle del Pokémon
+### Pokémon Detail View
 
-Esta pantalla mostrará la información del Pokémon seleccionado. El diseño es de tu elección, pero necesitamos
-**enseñar todos estos datos**:
+This screen will display information about the selected Pokémon. The design is your choice, but we need to
+**show all this data**:
 
 - Id.
-- Nombre.
-- Foto.
-- Altura y peso (en la unidad que devuelve la API, no es necesario hacer conversiones a centímetros o kilogramos).
-- Tipos del Pokémon.
+- Name.
+- Image.
+- Height and weight (in the unit returned by the API, no need to convert to centimeters or kilograms).
+- Pokémon types.
 
-Además de todos esos datos, deberemos poder **añadir o quitar el Pokémon como capturado**. Los Pokémon capturados
-deben de ser almacenados localmente en el teléfono. La manera en la que almacenes los datos es de tu elección.
+In addition to all that data, we must be able to **add or remove the Pokémon as caught**. Caught Pokémon
+must be stored locally on the device. How you store the data is your choice.
 
-Por supuesto, **cuando se navegue hacia atrás, debemos volver a la misma pantalla que estábamos**.
+Of course, **when navigating back, we must return to the same screen we were on**.
 
-### UI - Interfaz de Usuario
+### UI - User Interface
 
-Queremos que la Pokédex sea personalizable. Por ello vamos a personalizar los colores dependiendo de varios factores.
+We want the Pokédex to be customizable. That's why we'll customize the colors depending on several factors.
 
-Por defecto, **la paleta de colores usada en la aplicación y la Top Bar** va a ser del color original de la Pokédex, que
-es el color "Red" o "Boston University Red" (el que más te guste). Puedes encontrar sus códigos de color
-[en este enlace](https://www.schemecolor.com/pokemon-colors.php).
+By default, **the color palette used in the application and the Top Bar** will be the original Pokédex color,
+which is "Red" or "Boston University Red" (whichever you prefer). You can find its color codes
+[in this link](https://www.schemecolor.com/pokemon-colors.php).
 
-Para hacerlo aún más personalizable, **la paleta de colores cambiará dependiendo del tipo de los Pokémon capturados**.
+To make it even more customizable, **the color palette will change depending on the type of caught Pokémon**.
 
-Por ejemplo:
+For example:
 
-- Si el entrenador tiene capturados 3 Pokémon de tipo Agua, y 2 de Planta, la paleta de colores será basada
-  en el color asociado al tipo Agua.
-- En el caso de que el entrenador no tenga Pokémon capturados o no haya un tipo mayoritario entre los Pokémon
-  capturados (por ejemplo si el entrenador tiene capturados 2 Pokémon de tipo Planta y 2 de tipo Agua), la paleta
-  de colores será la paleta por defecto mencionada anteriormente.
+- If the trainer has 3 caught Water-type Pokémon and 2 Grass-type, the color palette will be based
+  on the color associated with the Water type.
+- In case the trainer has no caught Pokémon or there's no dominant type among caught Pokémon
+  (for example, if the trainer has 2 caught Grass-type and 2 Water-type), the color palette
+  will be the default palette mentioned earlier.
 
-Los tipos de los Pokémon pueden obtenerse de la propia API y sus colores asociados pueden consultarse en
-[este link](https://www.pokemonaaah.net/artsyfartsy/colordex/).
+Pokémon types can be obtained from the API itself and their associated colors can be found at
+[this link](https://www.pokemonaaah.net/artsyfartsy/colordex/).
 
 ### Extra
 
-- Los pasos anteriores son los requisitos mínimos, pero todas las mejoras añadidas en la experiencia de
-  usuario (UX) o la interfaz gráfica (UI) son de agradecer.
-- Se valorarán buenas prácticas, clean architecture y el uso de cualquier librería de control
-  de calidad del código.
-
-# Showcase:
-![Showcase Phone App](./showcaseImages/showcase_phone_app.gif)
-
-# Problems:
-- The AppBar is too big in Desktop mode
-- ScrollDown to get next page doesn't trigger always (could be done better)
-- HomePage is a mess could be refactored
-
+- The steps above are the minimum requirements, but any improvements made to user experience (UX)
+  or user interface (UI) are appreciated.
+- Good practices, clean architecture, and the use of any code quality control library will be valued.
