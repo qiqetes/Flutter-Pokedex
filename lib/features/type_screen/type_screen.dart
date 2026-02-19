@@ -6,8 +6,7 @@ import 'package:pokedex_flutter/features/pokemon/providers/pokemon_provider.dart
 import 'package:pokedex_flutter/ui/not_found_widget.dart';
 
 class TypeScreen extends StatelessWidget {
-  TypeScreen({super.key, required String typeString})
-      : type = PokeType.fromJson(typeString);
+  TypeScreen({super.key, required String typeString}) : type = PokeType.fromJson(typeString);
   final PokeType type;
 
   @override
@@ -21,17 +20,14 @@ class TypeScreen extends StatelessWidget {
             builder: (context, ref, child) => IconButton(
               icon: const Icon(Icons.refresh),
               onPressed: () {
-                ref
-                    .read(pokemonControllerProvider(type: type).notifier)
-                    .fetchNextPage();
+                ref.read(pokemonControllerProvider(type: type).notifier).fetchNextPage();
               },
             ),
           ),
         ],
       ),
       body: Consumer(builder: (context, ref, child) {
-        final pokemonController =
-            ref.watch(pokemonControllerProvider(type: type));
+        final pokemonController = ref.watch(pokemonControllerProvider(type: type));
 
         switch (pokemonController) {
           case AsyncError():
@@ -41,9 +37,7 @@ class TypeScreen extends StatelessWidget {
             return PokemonList(
                 pokemons: value,
                 onReachListEnd: () {
-                  ref
-                      .read(pokemonControllerProvider(type: type).notifier)
-                      .fetchNextPage();
+                  ref.read(pokemonControllerProvider(type: type).notifier).fetchNextPage();
                 });
           case _:
             return const Center(child: CircularProgressIndicator());

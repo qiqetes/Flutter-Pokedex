@@ -30,15 +30,12 @@ class App extends ConsumerWidget {
         scaffoldBackgroundColor: kColWhite,
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.montserratTextTheme().copyWith(
-          titleLarge: GoogleFonts.montserratTextTheme()
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 29),
+          titleLarge: GoogleFonts.montserratTextTheme().titleLarge?.copyWith(fontWeight: FontWeight.bold, fontSize: 29),
           titleMedium: GoogleFonts.notoSansTextTheme().titleMedium,
-          titleSmall: GoogleFonts.montserratTextTheme().titleMedium?.copyWith(
-              fontWeight: FontWeight.bold, fontSize: 20, color: kColBlack),
-          bodyMedium: GoogleFonts.notoSansTextTheme()
-              .bodyMedium
-              ?.copyWith(color: kColBlack),
+          titleSmall: GoogleFonts.montserratTextTheme()
+              .titleMedium
+              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 20, color: kColBlack),
+          bodyMedium: GoogleFonts.notoSansTextTheme().bodyMedium?.copyWith(color: kColBlack),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
@@ -69,8 +66,7 @@ class App extends ConsumerWidget {
           fillColor: kColSoft,
           filled: true,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          contentPadding:
-              const EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 8),
+          contentPadding: const EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 8),
         ),
       ),
     );

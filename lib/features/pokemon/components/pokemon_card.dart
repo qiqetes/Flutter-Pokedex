@@ -9,10 +9,7 @@ import 'package:pokedex_flutter/ui/rounded_container.dart';
 import 'package:go_router/go_router.dart';
 
 class PokemonCard extends ConsumerWidget {
-  const PokemonCard(
-    this.pokemon, {
-    super.key,
-  });
+  const PokemonCard(this.pokemon, {super.key});
   final Pokemon pokemon;
 
   @override
@@ -24,9 +21,7 @@ class PokemonCard extends ConsumerWidget {
       padding: EdgeInsets.zero,
       color: pokemon.types.first.secondaryColor.withAlpha(200),
       onTap: () {
-        ref.read(currentPokemonProvider.notifier).state = pokemon;
         context.push('/pokemon/${pokemon.id}');
-        // ref.read(capturedPokemonProvider.notifier).capture(pokemon);
       },
       clipped: false,
       child: SizedBox(
@@ -35,7 +30,7 @@ class PokemonCard extends ConsumerWidget {
           children: [
             if (pokemon.hasTwoTypes) _SecondaryTypeIndicator(pokemon: pokemon),
             _MainDetails(pokemon: pokemon),
-            if (isCaptured) const _CapturedIndicator()
+            if (isCaptured) const _CapturedIndicator(),
           ],
         ),
       ),
@@ -44,9 +39,7 @@ class PokemonCard extends ConsumerWidget {
 }
 
 class _MainDetails extends StatelessWidget {
-  const _MainDetails({
-    required this.pokemon,
-  });
+  const _MainDetails({required this.pokemon});
 
   final Pokemon pokemon;
 
@@ -69,9 +62,10 @@ class _MainDetails extends StatelessWidget {
     return Text(
       pokemon.name.capitalize(),
       style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: pokemon.types.first.color.darken(0.35)),
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: pokemon.types.first.color.darken(0.35),
+      ),
     );
   }
 
@@ -95,10 +89,7 @@ class _CapturedIndicator extends StatelessWidget {
     return Positioned(
       right: 10,
       top: 10,
-      child: SvgPicture.asset(
-        'assets/images/pokeball_icon.svg',
-        width: 20,
-      ),
+      child: SvgPicture.asset('assets/images/pokeball_icon.svg', width: 20),
     );
   }
 }
@@ -123,6 +114,7 @@ class _SecondaryTypeIndicator extends StatelessWidget {
               child: SvgPicture.asset(
                 pokemon.types.last.logoPath,
                 width: 200,
+                // ignore: deprecated_member_use
                 color: pokemon.types.last.color,
               ),
             ),

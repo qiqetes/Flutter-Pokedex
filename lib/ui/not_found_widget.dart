@@ -19,8 +19,7 @@ class NotFoundWidget extends StatelessWidget {
           ),
         ),
         const Text("MissingNo.", style: TextStyle(fontSize: 24)),
-        if (onRetryPressed != null)
-          ElevatedButton(onPressed: onRetryPressed!, child: const Text("Retry"))
+        if (onRetryPressed != null) ElevatedButton(onPressed: onRetryPressed!, child: const Text("Retry"))
       ],
     ));
   }

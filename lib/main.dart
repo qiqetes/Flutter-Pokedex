@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter/features/splash_screen/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPreferencesProvider =
-    Provider<SharedPreferences>((ref) => throw UnimplementedError());
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) => throw UnimplementedError());
 void main() async {
   runApp(const SplashScreen());
 

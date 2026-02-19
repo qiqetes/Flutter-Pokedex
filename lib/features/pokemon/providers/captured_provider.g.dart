@@ -6,36 +6,103 @@ part of 'captured_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$predominantTypeHash() => r'67c32d697d11c198ae7d70f1d426d6ea87276887';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [predominantType].
-@ProviderFor(predominantType)
-final predominantTypeProvider = AutoDisposeProvider<PokeType>.internal(
-  predominantType,
-  name: r'predominantTypeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$predominantTypeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef PredominantTypeRef = AutoDisposeProviderRef<PokeType>;
-String _$capturedPokemonHash() => r'3c2a4f078053af902e3b284c69dcc970f4d1a041';
-
-/// See also [CapturedPokemon].
 @ProviderFor(CapturedPokemon)
-final capturedPokemonProvider =
-    AutoDisposeNotifierProvider<CapturedPokemon, List<Pokemon>>.internal(
-  CapturedPokemon.new,
-  name: r'capturedPokemonProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$capturedPokemonHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final capturedPokemonProvider = CapturedPokemonProvider._();
 
-typedef _$CapturedPokemon = AutoDisposeNotifier<List<Pokemon>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+final class CapturedPokemonProvider
+    extends $NotifierProvider<CapturedPokemon, List<Pokemon>> {
+  CapturedPokemonProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'capturedPokemonProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$capturedPokemonHash();
+
+  @$internal
+  @override
+  CapturedPokemon create() => CapturedPokemon();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<Pokemon> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<Pokemon>>(value),
+    );
+  }
+}
+
+String _$capturedPokemonHash() => r'82390487c36a9d1d89ceea93c61218658a709eea';
+
+abstract class _$CapturedPokemon extends $Notifier<List<Pokemon>> {
+  List<Pokemon> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<List<Pokemon>, List<Pokemon>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<List<Pokemon>, List<Pokemon>>,
+              List<Pokemon>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+/// Returns null if no captured or no predominant type
+
+@ProviderFor(predominantType)
+final predominantTypeProvider = PredominantTypeProvider._();
+
+/// Returns null if no captured or no predominant type
+
+final class PredominantTypeProvider
+    extends $FunctionalProvider<PokeType?, PokeType?, PokeType?>
+    with $Provider<PokeType?> {
+  /// Returns null if no captured or no predominant type
+  PredominantTypeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'predominantTypeProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$predominantTypeHash();
+
+  @$internal
+  @override
+  $ProviderElement<PokeType?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  PokeType? create(Ref ref) {
+    return predominantType(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PokeType? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PokeType?>(value),
+    );
+  }
+}
+
+String _$predominantTypeHash() => r'1ef64b279f7db4491df9f48aa2c5c4150f095b54';

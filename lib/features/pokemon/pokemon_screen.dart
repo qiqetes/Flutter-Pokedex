@@ -10,11 +10,11 @@ import 'package:pokedex_flutter/ui/rounded_container.dart';
 
 class PokemonScreen extends ConsumerWidget {
   const PokemonScreen({super.key, required this.pokemonId});
-  final String pokemonId;
+  final int pokemonId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Pokemon? pokemon = ref.watch(currentPokemonProvider.notifier).state;
+    Pokemon? pokemon = ref.watch(currentPokemonProvider);
     if (pokemon == null) {
       return const Center(child: Text('Error loading Pokemon'));
     }
@@ -47,7 +47,8 @@ class PokemonScreen extends ConsumerWidget {
                         Text('${pokemon.height} feet'),
                         const SizedBox(height: 16),
                         const Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget libero. Nulla facilisi. Nullam nec nunc nec libero."),
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget libero. Nulla facilisi. Nullam nec nunc nec libero.",
+                        ),
                         const SizedBox(height: 16),
                         Row(
                           children: [
@@ -61,9 +62,9 @@ class PokemonScreen extends ConsumerWidget {
                                     color: type.color.darken(0.35),
                                   ),
                                 ),
-                              )
+                              ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -88,10 +89,7 @@ class PokemonScreen extends ConsumerWidget {
 }
 
 class _BackgroundTitle extends StatelessWidget {
-  const _BackgroundTitle({
-    super.key,
-    required this.pokemon,
-  });
+  const _BackgroundTitle({required this.pokemon});
 
   final Pokemon pokemon;
 
@@ -127,8 +125,10 @@ class _BackgroundTitle extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: [
-                  Text(pokemon.name.capitalize(),
-                      style: Theme.of(context).textTheme.titleLarge),
+                  Text(
+                    pokemon.name.capitalize(),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                   const SizedBox(width: 16),
                   Text(
                     "#${pokemon.id}",
@@ -149,26 +149,27 @@ class _CaptureButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Pokemon pokemon = ref.watch(currentPokemonProvider.notifier).state!;
+    Pokemon pokemon = ref.watch(currentPokemonProvider);
     List<PokeType> pokeType = pokemon.types;
     bool isCaptured = ref.watch(capturedPokemonProvider).contains(pokemon);
 
     return IconButton(
       icon: AnimatedContainer(
-          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-          decoration: BoxDecoration(
-            color: isCaptured ? pokeType[0].secondaryColor : Colors.transparent,
-            borderRadius: BorderRadius.circular(300),
-          ),
-          duration: const Duration(milliseconds: 300),
-          child: Row(
-            children: [
-              if (isCaptured) const SizedBox(width: 10),
-              if (isCaptured) const Text('CAPTURED!'),
-              if (isCaptured) const SizedBox(width: 16),
-              Image.asset('assets/images/pokeball_logo_white.png'),
-            ],
-          )),
+        padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+        decoration: BoxDecoration(
+          color: isCaptured ? pokeType[0].secondaryColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(300),
+        ),
+        duration: const Duration(milliseconds: 300),
+        child: Row(
+          children: [
+            if (isCaptured) const SizedBox(width: 10),
+            if (isCaptured) const Text('CAPTURED!'),
+            if (isCaptured) const SizedBox(width: 16),
+            Image.asset('assets/images/pokeball_logo_white.png'),
+          ],
+        ),
+      ),
       onPressed: () {
         ref.read(capturedPokemonProvider.notifier).capture(pokemon);
       },

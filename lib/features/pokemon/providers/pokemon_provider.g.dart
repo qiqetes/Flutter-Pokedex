@@ -6,193 +6,148 @@ part of 'pokemon_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonControllerHash() => r'b7ec94a43a151c590ebe5abe1a41f7268f942fc1';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+@ProviderFor(pokemonRepository)
+final pokemonRepositoryProvider = PokemonRepositoryProvider._();
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$PokemonController
-    extends BuildlessAutoDisposeAsyncNotifier<List<Pokemon>> {
-  late final PokeType? type;
-  late final String? searchName;
-
-  FutureOr<List<Pokemon>> build({
-    PokeType? type,
-    String? searchName,
-  });
-}
-
-/// See also [PokemonController].
-@ProviderFor(PokemonController)
-const pokemonControllerProvider = PokemonControllerFamily();
-
-/// See also [PokemonController].
-class PokemonControllerFamily extends Family<AsyncValue<List<Pokemon>>> {
-  /// See also [PokemonController].
-  const PokemonControllerFamily();
-
-  /// See also [PokemonController].
-  PokemonControllerProvider call({
-    PokeType? type,
-    String? searchName,
-  }) {
-    return PokemonControllerProvider(
-      type: type,
-      searchName: searchName,
-    );
-  }
-
-  @override
-  PokemonControllerProvider getProviderOverride(
-    covariant PokemonControllerProvider provider,
-  ) {
-    return call(
-      type: provider.type,
-      searchName: provider.searchName,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'pokemonControllerProvider';
-}
-
-/// See also [PokemonController].
-class PokemonControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    PokemonController, List<Pokemon>> {
-  /// See also [PokemonController].
-  PokemonControllerProvider({
-    PokeType? type,
-    String? searchName,
-  }) : this._internal(
-          () => PokemonController()
-            ..type = type
-            ..searchName = searchName,
-          from: pokemonControllerProvider,
-          name: r'pokemonControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$pokemonControllerHash,
-          dependencies: PokemonControllerFamily._dependencies,
-          allTransitiveDependencies:
-              PokemonControllerFamily._allTransitiveDependencies,
-          type: type,
-          searchName: searchName,
-        );
-
-  PokemonControllerProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.type,
-    required this.searchName,
-  }) : super.internal();
-
-  final PokeType? type;
-  final String? searchName;
-
-  @override
-  FutureOr<List<Pokemon>> runNotifierBuild(
-    covariant PokemonController notifier,
-  ) {
-    return notifier.build(
-      type: type,
-      searchName: searchName,
-    );
-  }
-
-  @override
-  Override overrideWith(PokemonController Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: PokemonControllerProvider._internal(
-        () => create()
-          ..type = type
-          ..searchName = searchName,
-        from: from,
-        name: null,
+final class PokemonRepositoryProvider
+    extends
+        $FunctionalProvider<
+          PokemonRepository,
+          PokemonRepository,
+          PokemonRepository
+        >
+    with $Provider<PokemonRepository> {
+  PokemonRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'pokemonRepositoryProvider',
+        isAutoDispose: true,
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        type: type,
-        searchName: searchName,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+      );
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<PokemonController, List<Pokemon>>
-      createElement() {
-    return _PokemonControllerProviderElement(this);
+  String debugGetCreateSourceHash() => _$pokemonRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<PokemonRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PokemonRepository create(Ref ref) {
+    return pokemonRepository(ref);
   }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PokemonRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PokemonRepository>(value),
+    );
+  }
+}
+
+String _$pokemonRepositoryHash() => r'c064154d8877cfde335af317be86cc6f4e6214b1';
+
+@ProviderFor(PokemonController)
+final pokemonControllerProvider = PokemonControllerFamily._();
+
+final class PokemonControllerProvider
+    extends $AsyncNotifierProvider<PokemonController, List<Pokemon>> {
+  PokemonControllerProvider._({
+    required PokemonControllerFamily super.from,
+    required ({PokeType? type, String? searchName}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'pokemonControllerProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$pokemonControllerHash();
+
+  @override
+  String toString() {
+    return r'pokemonControllerProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  PokemonController create() => PokemonController();
 
   @override
   bool operator ==(Object other) {
-    return other is PokemonControllerProvider &&
-        other.type == type &&
-        other.searchName == searchName;
+    return other is PokemonControllerProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, type.hashCode);
-    hash = _SystemHash.combine(hash, searchName.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-mixin PokemonControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<List<Pokemon>> {
-  /// The parameter `type` of this provider.
-  PokeType? get type;
+String _$pokemonControllerHash() => r'f2767ed1b9ba63c1bac60218d80d99ced0bfbbfa';
 
-  /// The parameter `searchName` of this provider.
-  String? get searchName;
-}
+final class PokemonControllerFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          PokemonController,
+          AsyncValue<List<Pokemon>>,
+          List<Pokemon>,
+          FutureOr<List<Pokemon>>,
+          ({PokeType? type, String? searchName})
+        > {
+  PokemonControllerFamily._()
+    : super(
+        retry: null,
+        name: r'pokemonControllerProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-class _PokemonControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<PokemonController,
-        List<Pokemon>> with PokemonControllerRef {
-  _PokemonControllerProviderElement(super.provider);
+  PokemonControllerProvider call({PokeType? type, String? searchName}) =>
+      PokemonControllerProvider._(
+        argument: (type: type, searchName: searchName),
+        from: this,
+      );
 
   @override
-  PokeType? get type => (origin as PokemonControllerProvider).type;
-  @override
-  String? get searchName => (origin as PokemonControllerProvider).searchName;
+  String toString() => r'pokemonControllerProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+
+abstract class _$PokemonController extends $AsyncNotifier<List<Pokemon>> {
+  late final _$args = ref.$arg as ({PokeType? type, String? searchName});
+  PokeType? get type => _$args.type;
+  String? get searchName => _$args.searchName;
+
+  FutureOr<List<Pokemon>> build({PokeType? type, String? searchName});
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<List<Pokemon>>, List<Pokemon>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<Pokemon>>, List<Pokemon>>,
+              AsyncValue<List<Pokemon>>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(
+      ref,
+      () => build(type: _$args.type, searchName: _$args.searchName),
+    );
+  }
+}

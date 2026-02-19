@@ -6,27 +6,25 @@ part of 'pokemon.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
-    _$PokemonImpl(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      types: (json['types'] as List<dynamic>)
-          .map((e) => $enumDecode(_$PokeTypeEnumMap, e))
-          .toList(),
-      spriteUrl: json['spriteUrl'] as String,
-      height: (json['height'] as num?)?.toInt() ?? 0,
-      required: json['required'],
-    );
+_Pokemon _$PokemonFromJson(Map<String, dynamic> json) => _Pokemon(
+  id: (json['id'] as num).toInt(),
+  name: json['name'] as String,
+  types: (json['types'] as List<dynamic>)
+      .map((e) => $enumDecode(_$PokeTypeEnumMap, e))
+      .toList(),
+  spriteUrl: json['spriteUrl'] as String,
+  height: (json['height'] as num?)?.toInt() ?? 0,
+  required: json['required'],
+);
 
-Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'types': instance.types.map((e) => _$PokeTypeEnumMap[e]!).toList(),
-      'spriteUrl': instance.spriteUrl,
-      'height': instance.height,
-      'required': instance.required,
-    };
+Map<String, dynamic> _$PokemonToJson(_Pokemon instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'types': instance.types.map((e) => _$PokeTypeEnumMap[e]!).toList(),
+  'spriteUrl': instance.spriteUrl,
+  'height': instance.height,
+  'required': instance.required,
+};
 
 const _$PokeTypeEnumMap = {
   PokeType.water: 'water',

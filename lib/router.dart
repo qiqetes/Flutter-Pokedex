@@ -4,6 +4,7 @@ import 'package:pokedex_flutter/features/navigation/navigation_shell.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_flutter/features/pokemon/pokemon_screen.dart';
+import 'package:pokedex_flutter/features/pokemon/providers/current_pokemon_provider.dart';
 import 'package:pokedex_flutter/features/type_screen/type_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -13,15 +14,26 @@ final routerProvider = Provider<GoRouter>((ref) {
       ShellRoute(
         builder: (context, state, child) => NavigationShell(child: child),
         routes: [
+          GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
           GoRoute(
-            path: '/',
-            builder: (context, state) => const HomeScreen(),
+            path: '/pokemon/:id',
+            builder: (context, state) {
+              return ProviderScope(
+                overrides: [
+                  currentPokemonProvider.overrideWithValue(
+                    ref.watch(
+                      pokemonByIdProvider(
+                        int.parse(state.pathParameters['id']!),
+                      ),
+                    ),
+                  ),
+                ],
+                child: PokemonScreen(
+                  pokemonId: int.parse(state.pathParameters['id']!),
+                ),
+              );
+            },
           ),
-          GoRoute(
-              path: '/pokemon/:id',
-              builder: (context, state) {
-                return PokemonScreen(pokemonId: state.pathParameters['id']!);
-              }),
           GoRoute(
             path: '/type/:id',
             builder: (context, state) =>

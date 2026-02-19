@@ -65,8 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? const _TypesList()
                 : Consumer(
                     builder: (context, ref, child) {
-                      final res = ref.watch(
-                          pokemonControllerProvider(searchName: searchText));
+                      final res = ref.watch(pokemonControllerProvider(searchName: searchText));
                       switch (res) {
                         case AsyncError():
                           return const Center(child: NotFoundWidget());
@@ -78,8 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         case AsyncLoading(:final List<Pokemon> value):
                           return PokemonList(pokemons: value);
                         default:
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                       }
                     },
                   )),

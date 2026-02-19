@@ -15,8 +15,7 @@ class PokemonRepository {
     List<PokeType>? types,
   }) async {
     // FIXME: queryInjections, use variables instead
-    final String nameFilter =
-        name != null && name.isNotEmpty ? ', name: {_ilike: "$name%"}' : '';
+    final String nameFilter = name != null && name.isNotEmpty ? ', name: {_ilike: "$name%"}' : '';
     final String typesFilter = types != null && types.isNotEmpty
         ? ', pokemon_v2_pokemontypes: {type_id: {_in: ${types.map((t) => t.typeId).join(',')}}}'
         : '';

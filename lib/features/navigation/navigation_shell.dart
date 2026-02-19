@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_flutter/features/navigation/bottom_gradient.dart';
 import 'package:pokedex_flutter/features/navigation/nav_bar.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex_flutter/features/pokemon/models/poke_type.dart';
 import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
+import 'package:pokedex_flutter/features/pokemon/providers/pokedex_palette_provider.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class NavigationShell extends StatefulWidget {
@@ -49,17 +49,18 @@ class NavigationShellState extends State<NavigationShell> {
 }
 
 class _DesktopLayout extends ConsumerWidget {
-  const _DesktopLayout(
-      {required this.child,
-      required this.onNavigate,
-      required this.selectedIndex});
+  const _DesktopLayout({
+    required this.child,
+    required this.onNavigate,
+    required this.selectedIndex,
+  });
   final Widget child;
   final void Function(int) onNavigate;
   final int selectedIndex;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final PokeType predominantType = ref.watch(predominantTypeProvider);
+    final palette = ref.watch(pokedexPaletteProvider);
     return Row(
       children: [
         NavigationRail(
@@ -71,7 +72,7 @@ class _DesktopLayout extends ConsumerWidget {
             NavigationRailDestination(
               icon: Icon(
                 Icons.search,
-                color: selectedIndex == 0 ? predominantType.color : kColWhite,
+                color: selectedIndex == 0 ? palette.primary : kColWhite,
               ),
               label: const Text('Home'),
             ),
@@ -79,7 +80,7 @@ class _DesktopLayout extends ConsumerWidget {
               icon: Image.asset(
                 'assets/images/pokeball_logo_white.png',
                 width: 24,
-                color: selectedIndex == 1 ? predominantType.color : kColWhite,
+                color: selectedIndex == 1 ? palette.primary : kColWhite,
               ),
               label: const Text('Captured'),
             ),
@@ -93,10 +94,11 @@ class _DesktopLayout extends ConsumerWidget {
 }
 
 class _AppLayout extends StatelessWidget {
-  const _AppLayout(
-      {required this.child,
-      required this.onNavigate,
-      required this.selectedIndex});
+  const _AppLayout({
+    required this.child,
+    required this.onNavigate,
+    required this.selectedIndex,
+  });
   final Widget child;
   final void Function(int) onNavigate;
   final int selectedIndex;
@@ -105,24 +107,25 @@ class _AppLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mqd = MediaQuery.of(context);
     final MediaQueryData newMqd = mqd.copyWith(
-        padding: mqd.padding.copyWith(bottom: 80 + mqd.padding.bottom),
-        viewPadding:
-            mqd.viewPadding.copyWith(bottom: 80 + mqd.viewPadding.bottom));
+      padding: mqd.padding.copyWith(bottom: 80 + mqd.padding.bottom),
+      viewPadding: mqd.viewPadding.copyWith(
+        bottom: 80 + mqd.viewPadding.bottom,
+      ),
+    );
 
     return Stack(
       children: [
-        Builder(builder: (context) {
-          return MediaQuery(data: newMqd, child: child);
-        }),
+        Builder(
+          builder: (context) {
+            return MediaQuery(data: newMqd, child: child);
+          },
+        ),
         const BottomGradient(),
         Positioned(
           width: MediaQuery.of(context).size.width,
           bottom: 0,
           child: SafeArea(
-            child: NavBar(
-              selectedIndex: selectedIndex,
-              onNavigate: onNavigate,
-            ),
+            child: NavBar(selectedIndex: selectedIndex, onNavigate: onNavigate),
           ),
         ),
       ],

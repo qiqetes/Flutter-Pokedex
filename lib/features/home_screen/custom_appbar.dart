@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex_flutter/features/pokemon/providers/captured_provider.dart';
+import 'package:pokedex_flutter/features/pokemon/providers/pokedex_palette_provider.dart';
 import 'package:pokedex_flutter/ui/k_colors.dart';
 
 class CustomAppBar extends ConsumerStatefulWidget {
-  const CustomAppBar(
-      {super.key, this.isShrink = false, required this.textEditingController});
+  const CustomAppBar({
+    super.key,
+    this.isShrink = false,
+    required this.textEditingController,
+  });
   final bool isShrink;
   final TextEditingController textEditingController;
 
@@ -16,15 +19,13 @@ class CustomAppBar extends ConsumerStatefulWidget {
 class _CustomAppBarState extends ConsumerState<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    final pokeType = ref.watch(predominantTypeProvider);
-    final backgroundColor = pokeType.color;
-    final textColor = pokeType.color.isDark ? kColWhite : kColBlack;
+    final palette = ref.watch(pokedexPaletteProvider);
+    final backgroundColor = palette.primary;
+    final textColor = palette.primary.isDark ? kColWhite : kColBlack;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-      ),
+      decoration: BoxDecoration(color: backgroundColor),
       width: double.infinity,
       height: 175,
       child: Stack(
@@ -35,7 +36,7 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
             right: -20,
             child: Image.asset(
               'assets/images/pokeball_logo_white.png',
-              color: pokeType.secondaryColor,
+              color: palette.secondary,
               width: 190,
             ),
           ),
@@ -45,19 +46,21 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Pokedex",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(color: textColor)),
+                  Text(
+                    "Pokedex",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(color: textColor),
+                  ),
                   if (!widget.isShrink) const SizedBox(height: 10),
                   if (!widget.isShrink)
                     _SearchInputField(
-                        textEditingController: widget.textEditingController),
+                      textEditingController: widget.textEditingController,
+                    ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -73,10 +76,7 @@ class _SearchInputField extends StatelessWidget {
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-        prefixIcon: const Icon(
-          Icons.search,
-          size: 25,
-        ),
+        prefixIcon: const Icon(Icons.search, size: 25),
         hintText: 'Search your pokemon',
         filled: true,
         fillColor: Colors.white,

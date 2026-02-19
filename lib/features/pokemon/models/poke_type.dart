@@ -32,16 +32,12 @@ enum PokeType {
   });
 
   static PokeType fromJson(String type) {
-    return PokeType.values
-            .firstWhereOrNull((element) => element.name == type) ??
-        PokeType.normal;
+    return PokeType.values.firstWhereOrNull((element) => element.name == type) ?? PokeType.normal;
   }
 
   static PokeType fromResource(Map<String, dynamic> json) {
     final typeStr = json['pokemon_v2_type']?['name'];
-    return PokeType.values
-            .firstWhereOrNull((element) => element.name == typeStr) ??
-        PokeType.normal;
+    return PokeType.values.firstWhereOrNull((element) => element.name == typeStr) ?? PokeType.normal;
   }
 
   String get logoPath => 'assets/images/type_logos/${name}_icon.svg';

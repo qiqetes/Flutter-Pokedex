@@ -5,14 +5,15 @@ part 'pokemon.freezed.dart';
 part 'pokemon.g.dart';
 
 @freezed
-class Pokemon with _$Pokemon {
-  const factory Pokemon(
-      {required int id,
-      required String name,
-      required List<PokeType> types,
-      required String spriteUrl,
-      @Default(0) int height,
-      required}) = _Pokemon;
+abstract class Pokemon with _$Pokemon {
+  const factory Pokemon({
+    required int id,
+    required String name,
+    required List<PokeType> types,
+    required String spriteUrl,
+    @Default(0) int height,
+    required,
+  }) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, Object?> json) =>
       _$PokemonFromJson(json);

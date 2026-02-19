@@ -31,8 +31,7 @@ class _PokemonListState extends State<PokemonList> {
   }
 
   void refetchOnMaxScrollExtent() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent - 20) {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 20) {
       widget.onReachListEnd?.call();
     }
   }
@@ -44,8 +43,7 @@ class _PokemonListState extends State<PokemonList> {
   }
 
   Widget _loadingIndicator() {
-    return const SizedBox(
-        height: 120, child: Center(child: CircularProgressIndicator()));
+    return const SizedBox(height: 120, child: Center(child: CircularProgressIndicator()));
   }
 
   @override
@@ -65,9 +63,7 @@ class _PokemonListState extends State<PokemonList> {
                   numColumns: elements,
                   spacingHorizontal: 16,
                   spacingVertical: 0,
-                  children: widget.pokemons
-                      .map((pokemon) => PokemonCard(pokemon))
-                      .toList()),
+                  children: widget.pokemons.map((pokemon) => PokemonCard(pokemon)).toList()),
               if (widget.onReachListEnd != null) _loadingIndicator(),
             ],
           ),
